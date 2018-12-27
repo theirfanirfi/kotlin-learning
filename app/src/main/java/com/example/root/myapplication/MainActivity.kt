@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.root.myapplication.Adapters.SimpleAdapter
 import com.example.root.myapplication.Model.Human
 import com.example.root.myapplication.Model.Person
+import com.example.root.myapplication.Model.SimpleListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -46,15 +47,26 @@ class MainActivity : AppCompatActivity() {
       //  textView.text = "YOU name is: "+p.name+ " : "+pp.height.toString()+ " : "+pp.color
 
 
-       var simpleAdapter =  SimpleAdapter(this)
+        var list = ArrayList<SimpleListViewModel>()
+        var s = SimpleListViewModel()
+        s.username = "irfan"
+        s.tagE = "good"
+
+        var ss = SimpleListViewModel()
+        ss.username = "shahid"
+        ss.tagE = "good"
+
+        list.add(s)
+        list.add(ss)
+
+       var simpleAdapter =  SimpleAdapter(this,list)
         listView.adapter = simpleAdapter
 
-        listView.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position,
-                                                                          id ->
+        listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position,
+                                                                         id ->
             Toast.makeText(this,"working "+position.toString(),Toast.LENGTH_LONG).show()
 
-        })
-
+        }
 
     }
 }
